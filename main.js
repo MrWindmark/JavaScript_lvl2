@@ -5,8 +5,8 @@
     { title: 'Shoes', price: 250 },
   ];
   
-  const renderGoodsItem = (title, price) => {
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+  const renderGoodsItem = (title = 'Name', price = "1000", imgURL = '#') => {
+    return `<div class="goods-item"><img src="${imgURL}"><h3>${title}</h3><p>${price}</p></div>`;
   };
   
   const renderGoodsList = (list) => {
@@ -14,7 +14,7 @@
     for (let i = 0; i < goodsList.length; i++){
         // выводился не каждый отдельный элемент списка,
         // а сам список, элементы которого разделены запятыми.
-        document.querySelector('.goods_list').innerHTML += goodsList[i];
+        document.querySelector('.goods-list').innerHTML += goodsList[i];
     }
   }
   
