@@ -6,19 +6,19 @@ class ShopItem {
         this.id = id;
     }
 
-    printItem () {
+    printItem() {
         // pass
     }
 }
 
 class ShopList {
-    constructor () {
+    constructor() {
         this.shopList = [];
     }
 
     addItem(limit) {
         for (let i = 0; i < limit; i++) {
-            let tmp = new ShopItem(`Item_${1}`, 10*(i+1), `url_${i}`, 10000+i*10, 2);
+            let tmp = new ShopItem(`Item_${1}`, 10 * (i + 1), `url_${i}`, 10000 + i * 10, 2);
             console.log(tmp);
             this.shopList.push(tmp);
         }
@@ -27,7 +27,7 @@ class ShopList {
     pickItem(id) {
         return this.shopList[id];
     }
-    checkLength () {
+    checkLength() {
         return this.shopList.length;
     }
 }
@@ -38,20 +38,20 @@ class NewBasketItem {
      * @param {ShopItem} item: ShopItem
      * @param {Number} quantity: Number
      */
-    constructor (item, quantity) {
+    constructor(item, quantity) {
         this.item = item;
         this.quantity = quantity;
     }
 }
 
-class GoodsBasket{
-    constructor () {
+class GoodsBasket {
+    constructor() {
         this.gBasket = {};
     }
 
-    addGood(item){
+    addGood(item) {
         let tmpItem = new NewBasketItem(item, 1);
-        if (!this.gBasket[item.id]){
+        if (!this.gBasket[item.id]) {
             this.gBasket[item.id] = tmpItem;
         } else {
             this.gBasket[item.id].quantity += 1;
@@ -65,7 +65,7 @@ class GoodsBasket{
     totalPrice() {
         let tPrice = 0;
         console.log(this.gBasket.length);
-        for(let i = 0; i < this.gBasket.length; i++){
+        for (let i = 0; i < this.gBasket.length; i++) {
             tPrice += this.gBasket[i].price * this.gBasket[i].quantity;
         }
         return tPrice;
@@ -88,7 +88,7 @@ console.log('el3: ', list1.pickItem(2));
 console.log('basket:', basket);
 let total = basket.totalPrice();
 console.log('total: ', total);
- 
+
 
 const goodsL = [
     { title: 'Shirt', price: 150 },
@@ -99,11 +99,11 @@ const goodsL = [
 
 const renderGoodsItem = (title = 'Name', price = "1000", imgURL = '#') => {
     return `<div class="goods-item"><img src="${imgURL}"><h3>${title}</h3><p>${price}</p></div>`;
-    };
+};
 
 const renderGoodsList = (list) => {
     let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-    for (let i = 0; i < goodsList.length; i++){
+    for (let i = 0; i < goodsList.length; i++) {
         // выводился не каждый отдельный элемент списка,
         // а сам список, элементы которого разделены запятыми.
         document.querySelector('.goods-list').innerHTML += goodsList[i];
