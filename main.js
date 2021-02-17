@@ -59,7 +59,7 @@ class GoodsBasket {
     }
 
     dropItem(item) {
-        // pass
+        delete this.gBasket[item.id];
     }
 
     totalPrice() {
@@ -69,6 +69,10 @@ class GoodsBasket {
             tPrice += this.gBasket[i].price * this.gBasket[i].quantity;
         }
         return tPrice;
+    }
+
+    getBasketItems() {
+        return this.gBasket;
     }
 }
 
@@ -89,7 +93,12 @@ console.log('basket:', basket);
 let total = basket.totalPrice();
 console.log('total: ', total);
 
+console.log(basket.getBasketItems());
+basket.dropItem(list1.pickItem(1));
+console.log(basket.getBasketItems());
 
+
+// старый код для рисования странички
 const goodsL = [
     { title: 'Shirt', price: 150 },
     { title: 'Socks', price: 50 },
