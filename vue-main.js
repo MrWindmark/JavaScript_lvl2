@@ -90,15 +90,17 @@ const app = new Vue({
             .then(result => result.json())
             .then(result =>{
                 this.goodsList = result;
-                this.filteredGoods = result;
+                this.filteredGoods = this.goodsList;
                 console.log(result);
             })
             .catch((e) => {
                 console.log('Error', e)
             });
         },
-        serachClick(value) {
-            console.log("search", value);
+        serachClick() {
+            let result = this.filteredGoods.filter(i => i.productName.toLowerCase().includes(this.searchKey.toLowerCase()));
+            console.log(result);
+            return result;
         },
         clickLMB(id) {
             console.log("We're on", id);

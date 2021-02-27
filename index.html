@@ -17,12 +17,13 @@
             </div>
 
             <input type="text" v-model="searchKey" placeholder="search">
-            <button @click='serachClick(searchKey)'>Go Search!</button>
+            <button @click='serachClick()'>Go Search!</button>
 
-            <div class="shop-item" v-for="item in filteredGoods" @click='clickLMB(item.id)'>
+            <div class="shop-item" v-for="item in filteredGoods">
                 <!-- <img :src="item.img" alt=""> -->
-                <h1>{{item.productName}}</h1>
+                <h2>{{item.productName}}</h2>
                 <span>{{item.price}}</span>
+                <button @click='clickLMB(item.id)'>Buy</button>
                 <hr/>
             </div>
         </div>
