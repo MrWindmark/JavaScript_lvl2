@@ -73,20 +73,27 @@ const goodsItem = [
     },
 ]
 
+const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get';
+
 const app = new Vue({
     el: '#app',
     data: {
-        goodsList: goodsItem,
+        goodsList: [],
         filteredGoods: [],
-        searchLine: '',
+        searchKey: '',
         isVisibleCart: false,
     },
     methods: {
-        getItems(url) {
-            return fetch(url)
+        getItems() {
+            return fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
             .then(result => result.json())
             .then(result =>{
-                this.shopList = result;
+                this.goodsList = result;
+                this.filteredGoods = result;
+                console.log(result);
+            })
+            .catch((e) => {
+                console.log('Error', e)
             });
         },
         serachClick(value) {
@@ -98,7 +105,14 @@ const app = new Vue({
         FilterGoods(value) {
             // pass
         },
+        switchState() {
+            this.isVisibleCart = !this.isVisibleCart;
+            console.log('Now', this.isVisibleCart);
+        },
     },
+    mounted(){
+        this.getItems();
+    }
 });
 
 const footer = new Vue({

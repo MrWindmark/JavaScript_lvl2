@@ -11,14 +11,17 @@
 <body>
     <div class="wrapper">
         <div id="app" class="body">
-            <div class="cart-block" v-if="isVisibleCart"></div>
-            
-            <input type="text" v-model="search" placeholder="search">
-            <button v-on:click='serachClick(search)'>Go Search!</button>
+            <div class="head">
+                <button @click='switchState()'>Корзина</button>
+                <div class="cart-block" v-if="isVisibleCart">Hello</div>
+            </div>
 
-            <div class="shop-item" v-for="item in goodsList">
-                <img :src="item.img" alt="">
-                <h1 @click='clickLMB(item.id)'>{{item.name}}</h1>
+            <input type="text" v-model="searchKey" placeholder="search">
+            <button @click='serachClick(searchKey)'>Go Search!</button>
+
+            <div class="shop-item" v-for="item in filteredGoods" @click='clickLMB(item.id)'>
+                <!-- <img :src="item.img" alt=""> -->
+                <h1>{{item.productName}}</h1>
                 <span>{{item.price}}</span>
                 <hr/>
             </div>
