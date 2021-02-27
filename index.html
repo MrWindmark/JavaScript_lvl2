@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app" class="body">
+            <div class="head">
+                <button @click='switchState()'>Корзина</button>
+                <div class="cart-block" v-if="isVisibleCart">Hello</div>
+            </div>
+
+            <input type="text" v-model="searchKey" placeholder="search">
+            <button @click='serachClick(searchKey)'>Go Search!</button>
+
+            <div class="shop-item" v-for="item in filteredGoods" @click='clickLMB(item.id)'>
+                <!-- <img :src="item.img" alt=""> -->
+                <h1>{{item.productName}}</h1>
+                <span>{{item.price}}</span>
+                <hr/>
+            </div>
+        </div>
+        <div id="footer" class="footer">
+            <p>{{time}}</p>
+            <p>Copyright © {{year}} Vladislav MrWindmark</p>
+        </div>
+    </div>
+    <script src="vue-main.js"></script>
+</body>
+</html>
