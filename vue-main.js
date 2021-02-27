@@ -82,6 +82,7 @@ const app = new Vue({
         filteredGoods: [],
         searchKey: '',
         isVisibleCart: false,
+        cartName: 'Корзина',
     },
     methods: {
         getItems() {
@@ -108,7 +109,13 @@ const app = new Vue({
         switchState() {
             this.isVisibleCart = !this.isVisibleCart;
             console.log('Now', this.isVisibleCart);
-        },
+            if(!this.isVisibleCart) {
+                this.cartName = 'Корзина';
+            }
+            if(this.isVisibleCart) {
+                this.cartName = 'Свернуть';
+            }
+        }
     },
     mounted(){
         this.getItems();

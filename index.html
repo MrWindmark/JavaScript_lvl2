@@ -12,7 +12,7 @@
     <div class="wrapper">
         <div id="app" class="body">
             <div class="head">
-                <button @click='switchState()'>Корзина</button>
+                <button @click='switchState()'>{{cartName}}</button>
                 <div class="cart-block" v-if="isVisibleCart">Hello</div>
             </div>
 
