@@ -5,21 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div class="wrapper">
-        <div class="basket_block">
-            <button class="basket-b">Корзина</button>
+        <div id="app" class="body">
+            <div class="cart-block" v-if="isVisibleCart"></div>
+            
+            <input type="text" v-model="search" placeholder="search">
+            <button v-on:click='serachClick(search)'>Go Search!</button>
+
+            <div class="shop-item" v-for="item in goodsList">
+                <img :src="item.img" alt="">
+                <h1 @click='clickLMB(item.id)'>{{item.name}}</h1>
+                <span>{{item.price}}</span>
+                <hr/>
+            </div>
         </div>
-        <div class="main">
-            <div class="goods-list"></div>
-        </div>
-        <div class="footer">
-            Copyright © 2021 Vladislav MrWindmark
+        <div id="footer" class="footer">
+            <p>{{time}}</p>
+            <p>Copyright © {{year}} Vladislav MrWindmark</p>
         </div>
     </div>
-    <script src="main.js"></script>
-    <script src="async.js"></script>
+    <script src="vue-main.js"></script>
 </body>
 </html>

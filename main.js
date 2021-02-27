@@ -16,6 +16,14 @@ class ShopList {
         this.shopList = [];
     }
 
+    getItem(url) {
+        return fetch(url)
+        .then(result => result.json())
+        .then(result =>{
+            this.shopList = result;
+        });
+    }
+
     addItem(limit) {
         for (let i = 0; i < limit; i++) {
             let tmp = new ShopItem(`Item_${1}`, 10 * (i + 1), `url_${i}`, 10000 + i * 10, 2);
@@ -24,18 +32,44 @@ class ShopList {
         }
     }
 
-    pickItem(id) {
-        return this.shopList[id];
+    selectItem(targetID) {
+        for (let item = 0; item < this.shopList.length; item++) {
+            const elem = this.shopList[item];
+            if(elem.id === targetID) {
+                return elem;
+            } else {
+                return 0;
+            }            
+        }
     }
-    checkLength() {
+
+    getLength() {
         return this.shopList.length;
+    }
+
+    render(targetItemName) {
+        const body = document.getElementsByClassName(`${targetItemName}`)[0];
+
+        for(let item = 0; item < this.shopList.length; item++) {
+            console.log(this.shopList.length);
+            let newShopItem = document.createElement('div');
+            newShopItem.classList('list-item');
+            newShopItem.innerHTML = `
+            <div>
+                <h5>${this.shopList[item][productName]} - ${this.shopList[item][price]}</h5>
+                <button data-goods-id="${this.shopList[item][id]}">Remove from cart</button>
+                <hr/>
+            </div>`;
+            console.log(newShopItem);
+            body.appendChild(newShopItem);
+        }
     }
 }
 
 class NewBasketItem {
     /**
      * 
-     * @param {ShopItem} item: ShopItem
+     * @param {ShopItem} item: ShopList elem
      * @param {Number} quantity: Number
      */
     constructor(item, quantity) {
@@ -76,47 +110,13 @@ class GoodsBasket {
     }
 }
 
-let list1 = new ShopList;
-list1.addItem(100);
+const goodsL = new ShopList();
 
-console.log('list: ', list1.checkLength());
+// const targetURL = 'https://mock-api-builder.vercel.app/api/schema/get/602c166a89c4a60009ef7046';
+// const targetURL = 'https://mock-api-builder.vercel.app/api/template/todos';
 
-let basket = new GoodsBasket;
-basket.addGood(list1.pickItem(0));
-console.log('el1: ', list1.pickItem(0));
-basket.addGood(list1.pickItem(1));
-console.log('el2: ', list1.pickItem(1));
-basket.addGood(list1.pickItem(2));
-console.log('el3: ', list1.pickItem(2));
-
-console.log('basket:', basket);
-let total = basket.totalPrice();
-console.log('total: ', total);
-
-console.log(basket.getBasketItems());
-basket.dropItem(list1.pickItem(1));
-console.log(basket.getBasketItems());
-
-
-// старый код для рисования странички
-const goodsL = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks', price: 50 },
-    { title: 'Jacket', price: 350 },
-    { title: 'Shoes', price: 250 },
-];
-
-const renderGoodsItem = (title = 'Name', price = "1000", imgURL = '#') => {
-    return `<div class="goods-item"><img src="${imgURL}"><h3>${title}</h3><p>${price}</p></div>`;
-};
-
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-    for (let i = 0; i < goodsList.length; i++) {
-        // выводился не каждый отдельный элемент списка,
-        // а сам список, элементы которого разделены запятыми.
-        document.querySelector('.goods-list').innerHTML += goodsList[i];
-    }
-}
-
-renderGoodsList(goodsL);
+// goodsL.getItem(targetURL);
+goodsL.addItem(100);
+console.log(goodsL);
+// goodsL.render('goods-list')
+// console.log(goodsL.getLength());
