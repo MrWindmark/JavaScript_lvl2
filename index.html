@@ -11,21 +11,12 @@
 <body>
     <div class="wrapper">
         <div id="app" class="body">
-            <div class="head">
-                <button @click='switchState()'>{{cartName}}</button>
-                <div class="cart-block" v-if="isVisibleCart">Hello</div>
-            </div>
+            <basket-app></basket-app>
+            
+            <search-app :goods="filteredGoods"></search-app>
 
-            <input type="text" v-model="searchKey" placeholder="search">
-            <button @click='serachClick()'>Go Search!</button>
-
-            <div class="shop-item" v-for="item in filteredGoods">
-                <!-- <img :src="item.img" alt=""> -->
-                <h2>{{item.productName}}</h2>
-                <span>{{item.price}}</span>
-                <button @click='clickLMB(item.id)'>Buy</button>
-                <hr/>
-            </div>
+            <list-app :goods="filteredGoods"></list-app>
+            
         </div>
         <div id="footer" class="footer">
             <p>{{time}}</p>
