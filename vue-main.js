@@ -31,7 +31,7 @@ Vue.component('search-app', {
                     <input type="text" v-model="searchKey" placeholder="search">
                     <button @click="filterGoods()">Go Search!</button>
                 </div>`,
-    props: { goods: Array },
+    props: { searchKey: String },
     data() {
         return {
             searchKey: '',
@@ -39,9 +39,8 @@ Vue.component('search-app', {
     },
     methods: {
         filterGoods() {
-            console.log(this.goods.filter(i => i.productName.toLowerCase().includes(this.searchKey.toLowerCase())));
-            return this.goods.filter(i => i.productName.toLowerCase().includes(this.searchKey.toLowerCase()));
-        },
+            this.$emit('filterGoods', this.searchKey);
+        }
     }
 });
 
@@ -72,7 +71,7 @@ const app = new Vue({
     el: '#app',
     data: {
         goodsList: [],
-        filteredGoods: [],
+        searchKey: '',
     },
     methods: {
         async getItems() {
@@ -85,6 +84,17 @@ const app = new Vue({
             } catch (e) {
                 console.log('Error', e);
             }
+        },
+        methods: {
+            filterGoods(inputKey) {
+                console.log(this.goods.filter(i => i.productName.toLowerCase().includes(this.inputKey.toLowerCase())));
+                return this.goods.filter(i => i.productName.toLowerCase().includes(this.inputKey.toLowerCase()));
+            },
+        }
+    },
+    computed: {
+        filteredGoods: function() {
+            return this.goodsList.filter(i => i.productName.toLowerCase().includes(this.searchKey.toLowerCase()))
         },
     },
     mounted(){
