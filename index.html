@@ -13,7 +13,7 @@
         <div id="app" class="body">
             <basket-app></basket-app>
             
-            <search-app :goods="filteredGoods"></search-app>
+            <search-app :goods="goodsList"></search-app>
 
             <list-app :goods="filteredGoods"></list-app>
             
@@ -23,6 +23,9 @@
             <p>Copyright © {{year}} Vladislav MrWindmark</p>
         </div>
     </div>
+    <script src="list-app.js"></script>
+    <script src="basket.js"></script>
+    <script src="search.js"></script>
     <script src="vue-main.js"></script>
 </body>
 </html>
