@@ -4,7 +4,9 @@ const app = new Vue({
     el: '#app',
     data: {
         goodsList: [],
+        filteredGoods: [],
     },
+    props: { searchKey: String },
     methods: {
         async getItems() {
             try {
@@ -16,6 +18,10 @@ const app = new Vue({
             } catch (e) {
                 console.log('Error', e);
             }
+        },
+        filterGoods(searchKey) {
+            console.log(this.goodsList.filter(i => i.productName.toLowerCase().includes(searchKey.toLowerCase())));
+            this.filteredGoods = this.goodsList.filter(i => i.productName.toLowerCase().includes(searchKey.toLowerCase()));
         },
     },
     mounted(){
