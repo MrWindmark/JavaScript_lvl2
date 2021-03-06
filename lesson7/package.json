@@ -1,0 +1,28 @@
+{
+  "name": "shop-server",
+  "version": "1.0.0",
+  "description": "Server basic back-end for shop for advanced JS courses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrWindmark/JavaScript_lvl2.git"
+  },
+  "author": "MrWindmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrWindmark/JavaScript_lvl2/issues"
+  },
+  "homepage": "https://github.com/MrWindmark/JavaScript_lvl2#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/uuid": "^8.3.0"
+  }
+}

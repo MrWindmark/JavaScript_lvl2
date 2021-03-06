@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    Overflow-x: hidden
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+.body {
+    width: 80vw;
+    flex-grow: 1;
+}
+.shop-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.item-element {
+    width: 200px;
+    height: 250px;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.elem-title {
+    height: 100px;
+    margin-bottom: 15px;
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 30px;
+    width: 100vw;
+}
