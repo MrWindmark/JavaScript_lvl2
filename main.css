@@ -10,7 +10,7 @@
     min-height: 100vh;
 }
 .body {
-    min-width: 80vw;
+    width: 80vw;
     flex-grow: 1;
 }
 .shop-item {
