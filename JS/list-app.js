@@ -10,7 +10,7 @@ Vue.component('item-draw-app', {
     props: ['item'],
     template: ` <div class="item-element">
                     <!-- <img :src="item.img" alt=""> -->
-                    <h2>{{item.productName}}</h2>
+                    <h2 class="elem-title">{{item.productName}}</h2>
                     <span>{{item.price}}</span>
                     <button @click='clickLMB(item.id)'>Buy</button>
                     <hr/>
