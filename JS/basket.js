@@ -1,6 +1,6 @@
 Vue.component('basket-app', {
     name: 'basket-app',
-    props: ['filteredGoods'],
+    props: {filteredGoods: Array, func: Function},
     data() {
         return {
             isVisibleCart: false,
