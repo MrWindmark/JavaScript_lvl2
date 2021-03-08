@@ -8,8 +8,10 @@ const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+
 
 let data = fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
             .then(result => result.json())
@@ -18,10 +20,14 @@ let data = fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
             });
 
 app.get('/', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "GET, POST");
     res.json(data);
 });
 
 app.post('/', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "GET, POST");
     const data = JSON.parse(fs.readFileSync('./basket.js'));
     data.push({
         productName: req.body.productName,
