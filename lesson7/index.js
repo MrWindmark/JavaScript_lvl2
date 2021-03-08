@@ -20,14 +20,16 @@ let data = fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
             });
 
 app.get('/', (req, res) => {
+    // danger method. CORS disabled!
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Methods", "GET, POST");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.json(data);
 });
 
 app.post('/', (req, res) => {
+    // danger method. CORS disabled!
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Methods", "GET, POST");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     const data = JSON.parse(fs.readFileSync('./basket.js'));
     data.push({
         productName: req.body.productName,
@@ -35,7 +37,7 @@ app.post('/', (req, res) => {
         id: v4()
     });
     fs.writeFileSync('basket.js', JSON.stringify(data));
-    res.statusCode;
+    res.statusCode = 200;
 });
 
 
