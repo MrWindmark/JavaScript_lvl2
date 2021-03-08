@@ -1,4 +1,4 @@
-// const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get';
+// const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get/602c166a89c4a60009ef7046';
 
 const app = new Vue({
     el: '#app',
