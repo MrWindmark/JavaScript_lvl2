@@ -18,6 +18,13 @@ Vue.component('item-draw-app', {
     methods: {
         clickLMB(id) {
             console.log("We're on", id);
+            fetch('http://localhost:3000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(this.item)
+            });
         },
     },
 });

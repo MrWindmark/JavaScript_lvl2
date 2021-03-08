@@ -1,4 +1,4 @@
-const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get';
+// const BASE_URL = 'https://mock-api-builder.vercel.app/api/schema/get/602c166a89c4a60009ef7046';
 
 const app = new Vue({
     el: '#app',
@@ -10,7 +10,7 @@ const app = new Vue({
     methods: {
         async getItems() {
             try {
-                const result = await fetch(`${BASE_URL}/602c166a89c4a60009ef7046`);
+                const result = await fetch(`http://localhost:3000`);
                 const result_1 = await result.json();
                 this.goodsList = result_1;
                 this.filteredGoods = this.goodsList;
