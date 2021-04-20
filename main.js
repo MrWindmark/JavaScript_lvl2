@@ -11,6 +11,7 @@ class ShopItem {
     }
 }
 
+
 class ShopList {
     constructor() {
         this.shopList = [];
@@ -32,6 +33,7 @@ class ShopList {
     }
 }
 
+
 class NewBasketItem {
     /**
      * 
@@ -43,6 +45,7 @@ class NewBasketItem {
         this.quantity = quantity;
     }
 }
+
 
 class GoodsBasket {
     constructor() {
