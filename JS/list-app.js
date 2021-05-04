@@ -18,6 +18,20 @@ Vue.component('item-draw-app', {
     methods: {
         clickLMB(id) {
             console.log("We're on", id);
+            console.log(this.item);
+
+            let itemToBasket = this.item;
+            let tmpBasket = fetch('lesson7/basket.json');
+
+            if (tmpBasket.result === 1) {
+                let find = this.tmpBasket.find(el => el.id === itemToBasket.id);
+                if (find) {
+                    find.quantity++;
+                } else {
+                    const prod = Object.assign({ quantity: 1 }, itemToBasket);
+                    this.cartItems.push(prod)
+                }
+            }
             fetch('http://localhost:3000', {
                 method: 'POST',
                 headers: {
