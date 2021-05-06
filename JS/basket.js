@@ -8,6 +8,12 @@ Vue.component('basket-app', {
             basket: [],
         }
     },
+    template: `<div class="basket">
+                    <button @click='switchState()'>{{cartName}}</button>
+                    <div class="cart-block" v-if="isVisibleCart">
+                        <basket-draw-app v-for="item in basket" :itemToDraw="item" :key="item.id"></basket-draw-app>
+                    </div>
+                </div>`,
     methods: {
         switchState() {
             this.isVisibleCart = !this.isVisibleCart;
@@ -30,20 +36,30 @@ Vue.component('basket-app', {
                 console.log('Error', e);
             }
         },
+        deleteFromBasket(item) {
+            fetch('http://localhost:3000/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(item)
+            });
+        },
     },
-    template: `<div class="basket">
-                    <button @click='switchState()'>{{cartName}}</button>
-                    <div class="cart-block" v-if="isVisibleCart">
-                        <basket-draw-app v-for="item in basket" :item="item" :key="item.id"></basket-draw-app>
-                    </div>
-                </div>`,
 });
 
 Vue.component('basket-draw-app', {
-    props: ['item'],
+    name: 'basket-draw-app',
+    props: { itemToDraw: Object },
+    methods: {
+        deleteFromBasket(item) {
+            this.$parent.deleteFromBasket(item);
+        }
+    },
     template: ` <div class="">
-                    <!-- <img :src="item.img" alt=""> -->
-                    <h5 class="">{{item.productName}} - {{item.quantity}} шт.</h5><span>Цена {{item.price}} за шт.</span>
+                    <!-- <img :src="itemToDraw.img" alt=""> -->
+                    <h5 class="">{{itemToDraw.productName}} - {{itemToDraw.quantity}} шт.</h5><span>Цена {{itemToDraw.price}} за шт.</span>
+                    <button @click='deleteFromBasket(itemToDraw)'>Удалить</button>
                     <hr/>
                 </div>`,
 });

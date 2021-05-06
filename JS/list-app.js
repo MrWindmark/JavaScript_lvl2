@@ -21,14 +21,14 @@ Vue.component('item-draw-app', {
                 </div>`,
     methods: {
         async clickLMB(id) {
-            console.log("We're on", id);
-            console.info('item', this.item);
+            // console.log("We're on", id);
+            // console.info('item', this.item);
 
             let tmpBasket = await fetch('http://localhost:3000/basket');
             const basket = await tmpBasket.json();
             let basketItem = this.item;
-            console.info('basket', basket);
-            console.info('Basket item 1', basketItem);
+            // console.info('basket', basket);
+            // console.info('Basket item 1', basketItem);
             // console.info('tmpBasket', JSON.stringify(basket));
 
             if (basket) {
@@ -36,11 +36,11 @@ Vue.component('item-draw-app', {
                 if (find) {
                     // в полученную корзину записать новые данные и вернуть обновлённую корзину на сервер
                     basketItem.quantity = basketItem.quantity + 1;
-                    console.info('Basket item 2.0', basketItem);
+                    // console.info('Basket item 2.0', basketItem);
                 } else {
                     // если в корзине товара не имелось - установить количество 1 и отправить на сервер
                     basketItem.quantity = 1;
-                    console.info('Basket item 2.1', basketItem);
+                    // console.info('Basket item 2.1', basketItem);
                 }
             }
 

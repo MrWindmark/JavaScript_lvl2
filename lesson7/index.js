@@ -74,7 +74,7 @@ app.post('/', cors(corsOptions), (req, res) => {
             let indexForDelete = tmpJSON.indexOf(findItem);
             tmpJSON.splice(indexForDelete, indexForDelete);
         }
-    // если же полученного элемента не было в "корзине" - добавляем элемент
+        // если же полученного элемента не было в "корзине" - добавляем элемент
     } else {
         tmpJSON.push(newData);
     }
@@ -90,6 +90,34 @@ app.post('/', cors(corsOptions), (req, res) => {
     });
 });
 
+app.post('/delete', cors(corsOptions), (req, res) => {
+    const newData = {
+        productName: req.body['productName'],
+        price: req.body['price'],
+        id: req.body['id'],
+        quantity: req.body['quantity']
+    };
+
+    const file = fs.readFileSync('basket.json');
+    const tmpJSON = JSON.parse(file);
+
+    const findItem = tmpJSON.find(el => el.id === newData.id);
+
+    if (findItem) {
+        let indexForDelete = tmpJSON.indexOf(findItem);
+        tmpJSON.splice(indexForDelete, 1);
+    }
+
+    fs.writeFileSync('basket.json', JSON.stringify(tmpJSON), (err) => {
+        if (err) {
+            res.send('{"result": 0}');
+            res.status(200).send();
+        } else {
+            res.send('{"result": 1}');
+            res.status(200).send();
+        }
+    });
+});
 
 app.listen(3000, () => {
     console.log('Success');
