@@ -37,6 +37,9 @@ Vue.component('basket-app', {
             }
         },
         deleteFromBasket(item) {
+            let indexForDelete = this.basket.indexOf(item);
+            this.basket.splice(indexForDelete, 1);
+
             fetch('http://localhost:3000/delete', {
                 method: 'POST',
                 headers: {
@@ -44,6 +47,27 @@ Vue.component('basket-app', {
                 },
                 body: JSON.stringify(item)
             });
+        },
+        addInBasket(item) {
+            item.quantity++;
+            fetch('http://localhost:3000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(item)
+            });
+        },
+        decreaseInBasket(item) {
+            item.quantity--;
+            fetch('http://localhost:3000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(item)
+            });
+
         },
     },
 });
@@ -54,11 +78,20 @@ Vue.component('basket-draw-app', {
     methods: {
         deleteFromBasket(item) {
             this.$parent.deleteFromBasket(item);
-        }
+        },
+        addInBasket(item) {
+            this.$parent.addInBasket(item);
+        },
+        decreaseInBasket(item) {
+            this.$parent.decreaseInBasket(item);
+        },
     },
     template: ` <div class="">
                     <!-- <img :src="itemToDraw.img" alt=""> -->
-                    <h5 class="">{{itemToDraw.productName}} - {{itemToDraw.quantity}} шт.</h5><span>Цена {{itemToDraw.price}} за шт.</span>
+                    <h5 class="">{{itemToDraw.productName}} - {{itemToDraw.quantity}} шт.</h5>
+                    <span>Цена {{itemToDraw.price}} за шт.</span>
+                    <button @click='addInBasket(itemToDraw)'>+</button>
+                    <button v-if='itemToDraw.quantity>1' @click='decreaseInBasket(itemToDraw)'>-</button>
                     <button @click='deleteFromBasket(itemToDraw)'>Удалить</button>
                     <hr/>
                 </div>`,
