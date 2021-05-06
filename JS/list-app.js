@@ -8,6 +8,10 @@ Vue.component('list-app', {
 
 Vue.component('item-draw-app', {
     props: ['item'],
+    data: {
+        basket: [],
+        basketItem: {},
+    },
     template: ` <div class="item-element">
                     <!-- <img :src="item.img" alt=""> -->
                     <h2 class="elem-title">{{item.productName}}</h2>
@@ -16,28 +20,36 @@ Vue.component('item-draw-app', {
                     <hr/>
                 </div>`,
     methods: {
-        clickLMB(id) {
+        async clickLMB(id) {
             console.log("We're on", id);
-            console.log(this.item);
+            console.info('item', this.item);
 
-            let itemToBasket = this.item;
-            let tmpBasket = fetch('lesson7/basket.json');
+            let tmpBasket = await fetch('http://localhost:3000/basket');
+            const basket = await tmpBasket.json();
+            let basketItem = this.item;
+            console.info('basket', basket);
+            console.info('Basket item 1', basketItem);
+            // console.info('tmpBasket', JSON.stringify(basket));
 
-            if (tmpBasket.result === 1) {
-                let find = this.tmpBasket.find(el => el.id === itemToBasket.id);
+            if (basket) {
+                let find = basket.find(el => el.id === basketItem.id);
                 if (find) {
-                    find.quantity++;
+                    // в полученную корзину записать новые данные и вернуть обновлённую корзину на сервер
+                    basketItem.quantity = basketItem.quantity + 1;
+                    console.info('Basket item 2.0', basketItem);
                 } else {
-                    const prod = Object.assign({ quantity: 1 }, itemToBasket);
-                    this.cartItems.push(prod)
+                    // если в корзине товара не имелось - установить количество 1 и отправить на сервер
+                    basketItem.quantity = 1;
+                    console.info('Basket item 2.1', basketItem);
                 }
             }
+
             fetch('http://localhost:3000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(this.item)
+                body: JSON.stringify(basketItem)
             });
         },
     },

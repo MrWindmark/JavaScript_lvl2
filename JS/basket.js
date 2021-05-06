@@ -22,7 +22,7 @@ Vue.component('basket-app', {
         },
         async getBasket() {
             try {
-                const result = await fetch('lesson7/basket.json');
+                const result = await fetch('http://localhost:3000/basket');
                 const result_1 = await result.json();
                 this.basket = result_1;
                 console.log('Log:', result_1);
@@ -43,8 +43,7 @@ Vue.component('basket-draw-app', {
     props: ['item'],
     template: ` <div class="">
                     <!-- <img :src="item.img" alt=""> -->
-                    <h5 class="">{{item.productName}}</h5>
-                    <span>{{item.price}}</span>
+                    <h5 class="">{{item.productName}} - {{item.quantity}} шт.</h5><span>Цена {{item.price}} за шт.</span>
                     <hr/>
                 </div>`,
 });
