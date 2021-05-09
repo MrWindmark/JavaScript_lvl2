@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-
-
 let data = fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
     .then(result => result.json())
     .then(result => {
@@ -22,7 +20,9 @@ let data = fetch(`${BASE_URL}/602c166a89c4a60009ef7046`)
     });
 
 const corsOptions = {
-    origin: '*'
+    origin: '*',
+    methods: ['GET', 'OPTIONS', 'POST'],
+    allowedHeaders: ['Content-Type',]
 }
 
 app.get('/', cors(corsOptions), (req, res) => {
@@ -39,7 +39,7 @@ app.get('/basket', cors(corsOptions), (req, res) => {
     // res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const file = fs.readFileSync('basket.json');
-    console.info('Basket file', file);
+    // console.info('Basket file', file);
     res.json(JSON.parse(file));
     res.statusCode = 200;
 });
@@ -120,6 +120,5 @@ app.post('/delete', cors(corsOptions), (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('Success');
-
+    console.log('Start successfull');
 });

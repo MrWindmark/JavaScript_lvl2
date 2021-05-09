@@ -1,0 +1,20 @@
+{
+  "name": "javascript_lvl2",
+  "version": "1.0.8",
+  "description": "Мекет онлайн-магазина на JavaScript. serve запускать в корневой папке проекта. nodemon index.js запускать, ожидаемо, в папке lesson7",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrWindmark/JavaScript_lvl2.git"
+  },
+  "author": "MrWindmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrWindmark/JavaScript_lvl2/issues"
+  },
+  "homepage": "https://github.com/MrWindmark/JavaScript_lvl2#readme",
+  "dependencies": {}
+}
