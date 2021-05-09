@@ -20,7 +20,7 @@ const app = new Vue({
             }
         },
         filterGoods(searchKey) {
-            console.log(this.goodsList.filter(i => i.productName.toLowerCase().includes(searchKey.toLowerCase())));
+            // console.log(this.goodsList.filter(i => i.productName.toLowerCase().includes(searchKey.toLowerCase())));
             this.filteredGoods = this.goodsList.filter(i => i.productName.toLowerCase().includes(searchKey.toLowerCase()));
         },
     },
