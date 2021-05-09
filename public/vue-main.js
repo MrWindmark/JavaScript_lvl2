@@ -14,7 +14,7 @@ const app = new Vue({
                 const result_1 = await result.json();
                 this.goodsList = result_1;
                 this.filteredGoods = this.goodsList;
-                console.log(result_1);
+                // console.log(result_1);
             } catch (e) {
                 console.log('Error', e);
             }
